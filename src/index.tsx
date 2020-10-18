@@ -1,6 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
+import { Title } from "./title";
+import { RangeSlider } from "./slider";
+import { Checkbox } from "./checkbox";
 
-import { ClickCounter } from "./ClickCounter";
-
-render(<ClickCounter start={1} />, document.getElementById("root"));
+render(<Title text={"Followers"} />, document.getElementById("TitleFollowers"));
+render(<RangeSlider />, document.getElementById("Slider"));
+render(<Checkbox />, document.getElementById("JoinedLeft"));
