@@ -1,12 +1,9 @@
 import React from "react";
-//import { action } from "@storybook/addon-actions";
-//import { withKnobs, number } from "@storybook/addon-knobs";
 import { Checkbox } from "./Checkbox";
 
 export default {
   component: Checkbox,
   title: "Checkbox",
-  //decorators: [withKnobs],
 };
 
 const Template = args => <Checkbox {...args} />;
