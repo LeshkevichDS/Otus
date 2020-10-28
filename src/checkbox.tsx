@@ -1,18 +1,13 @@
 import React from "react";
 
-function joinedClick() {
-  console.log('По Joined кликнули.');
+export interface CheckboxProps {
+  l: string;
+  c: string;
 }
 
-function leftClick() {
-  console.log('По Left кликнули.');
-}
-
-export const Checkbox = () => (
+export const Checkbox: React.FC<CheckboxProps> = ({l, c}) => (
 <div>
-  <input type="checkbox" id="joined" defaultChecked onClick={joinedClick}/>
-  <label htmlFor="joined">Joined</label>
-  <input type="checkbox" id="left" defaultChecked onClick={leftClick}/>
-  <label htmlFor="left">Left</label>
+  <input type="checkbox" id={l} defaultChecked/>
+  <label htmlFor={l}  style={{color: `${c}`}}>{l}</label>
 </div>
 );
