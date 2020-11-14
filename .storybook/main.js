@@ -9,18 +9,37 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-knobs/register',
     '@storybook/addon-storysource',
+    'storybook-addon-react-docgen/register',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+      },
+    },
   ],
   webpackFinal: (config) => {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
     config.module.rules.push({
-      test: /\.stories\.tsx$/,
-      loaders: [
+      test: /\.tsx?$/,
+      include: path.resolve(__dirname, "../src"),
+      use: [
+        require.resolve("babel-loader"),
         {
-          loader: require.resolve('@storybook/source-loader'),
-          options: { parser: 'typescript' },
+          loader: require.resolve("react-docgen-typescript-loader"),
+          options: {
+            tsconfigPath: path.resolve(__dirname, "../tsconfig.json"),
+          },
         },
       ],
+    });
+
+    config.module.rules.push({
+      test: /\.(stories|story)\.[tj]sx?$/,
+      loader: require.resolve('@storybook/source-loader'),
+      exclude: [/node_modules/],
       enforce: 'pre',
     });
 
