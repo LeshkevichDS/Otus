@@ -94,14 +94,18 @@ export class Screen extends React.Component<{}, ScreenState> {
     }
 
     render() {
-        return (
-            <div>
-                <h1>Lifecycle Screen</h1>
-                <h2>Интервал {this.state.interval}</h2>
-                <button onClick={this.decrement}>-</button>
-                <img src={this.state.url} />
-                <button onClick={this.increment}>+</button>
-            </div>
-        );
+        if (this.state.interval < 1000) {
+            throw new Error('I crashed!');
+        } else {
+            return (
+                <div>
+                    <h1>Lifecycle Screen</h1>
+                    <h2>Интервал {this.state.interval}</h2>
+                    <button onClick={this.decrement}>-</button>
+                    <img src={this.state.url} />
+                    <button onClick={this.increment}>+</button>
+                </div>
+            )
+        }
     }
 }
