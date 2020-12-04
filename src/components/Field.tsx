@@ -1,6 +1,15 @@
 import React from "react";
 import { Cell } from "./Cell"
 
+const FieldStyle = (x: number, y: number) => {
+    return {
+        display: "grid",
+        justifyContent: "start",
+        gridTemplateColumns: "auto ".repeat(x),
+        gridTemplateRows: "auto ".repeat(y),
+    }
+}
+
 interface FieldProps {
     x: number;
     y: number;
@@ -23,7 +32,7 @@ export const Field: React.FC<FieldProps> = ({x, y}) => {
         )
     })
     return (
-        <div style={{ display: "grid", justifyContent: "start", gridTemplateColumns: `${"auto ".repeat(x)}`, gridTemplateRows: `${"auto ".repeat(y)}` }}>
+        <div style={FieldStyle(x, y)}>
             {Cells}
         </div>
     );

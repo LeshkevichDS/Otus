@@ -8,7 +8,7 @@ export default {
   decorators: [withKnobs],
 };
 
-export const customField = () => [
+export const СustomField = () => [
   <Cell
     x={number("x", 4)}
     y={number("y", 4)}

@@ -1,8 +1,11 @@
 import React from "react";
 import { Field } from "./Field";
+import { Screen, ErrorScreen } from "./Screen";
+
 
 export const App = () => (
-  <div>
-    <Field x = {2} y = {2} />
-  </div>
+  <>
+    <Field x = {6} y = {4} />
+    <ErrorScreen><Screen /></ErrorScreen>
+  </>
 ) 

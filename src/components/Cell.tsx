@@ -1,5 +1,10 @@
 import React from "react";
-import { Screen } from "./Screen";
+
+const CellStyle = {
+    width: "35px",
+    height: "35px",
+    border: "1px solid",
+}
 
 interface CellProps {
     x: number;
@@ -7,10 +12,7 @@ interface CellProps {
 }
 
 export const Cell: React.FC<CellProps> = ({x, y}) => {
-    function handleClick() {
-        console.log(`По ячейке ${`x${x},y${y}`} кликнули`);
-    }
     return (
-        <div onClick={handleClick} style={{ width: "200px", height: "218px", border: "1px solid" }}>{`x${x}y${y}`}<Screen /></div>
+        <div onClick={() => console.log(`По ячейке ${`x${x},y${y}`} кликнули`)} style={CellStyle}>{`x${x}y${y}`}</div>
     )
 }
