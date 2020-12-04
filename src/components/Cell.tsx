@@ -1,6 +1,6 @@
 import React from "react";
 
-const CellStyle = {
+const cellStyle = {
     width: "35px",
     height: "35px",
     border: "1px solid",
@@ -13,6 +13,6 @@ interface CellProps {
 
 export const Cell: React.FC<CellProps> = ({x, y}) => {
     return (
-        <div onClick={() => console.log(`По ячейке ${`x${x},y${y}`} кликнули`)} style={CellStyle}>{`x${x}y${y}`}</div>
+        <div onClick={() => console.log(`По ячейке ${`x${x},y${y}`} кликнули`)} style={cellStyle}>{`x${x}y${y}`}</div>
     )
 }

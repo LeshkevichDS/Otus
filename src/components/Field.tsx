@@ -1,7 +1,13 @@
 import React from "react";
 import { Cell } from "./Cell"
 
-const FieldStyle = (x: number, y: number) => {
+const arrNum = (num: number): number[] => {
+    let arr = [];
+    for (let i = 1; i <= num; i++) {arr.push(i)};
+    return (arr); 
+};
+
+const fieldStyle = (x: number, y: number) => {
     return {
         display: "grid",
         justifyContent: "start",
@@ -9,12 +15,6 @@ const FieldStyle = (x: number, y: number) => {
         gridTemplateRows: "auto ".repeat(y),
     }
 }
-
-const arrNum = (num: number): number[] => {
-    let arr = [];
-    for (let i = 1; i <= num; i++) {arr.push(i)};
-    return (arr); 
-};
 
 interface FieldProps {
     x: number;
@@ -32,7 +32,7 @@ export const Field: React.FC<FieldProps> = ({x, y}) => {
         )
     })
     return (
-        <div style={FieldStyle(x, y)}>
+        <div style={fieldStyle(x, y)}>
             {Cells}
         </div>
     );
