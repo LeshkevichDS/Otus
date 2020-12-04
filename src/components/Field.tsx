@@ -10,16 +10,16 @@ const FieldStyle = (x: number, y: number) => {
     }
 }
 
-interface FieldProps {
-    x: number;
-    y: number;
-}
-
-function arrNum(num: number): number[] {
+const arrNum = (num: number): number[] => {
     let arr = [];
     for (let i = 1; i <= num; i++) {arr.push(i)};
     return (arr); 
 };
+
+interface FieldProps {
+    x: number;
+    y: number;
+}
 
 export const Field: React.FC<FieldProps> = ({x, y}) => {
     const Cells = arrNum(y).map(function(itemY) {

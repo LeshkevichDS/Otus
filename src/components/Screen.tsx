@@ -34,7 +34,7 @@ export class ErrorScreen extends React.Component {
 
 // Компонент внутри обработчика ошибок
 
-const getUrl = (id: number): string => {
+export const getUrl = (id: number): string => {
     const goodId = Math.min(1000, Math.max(1, id));
     return `https://picsum.photos/id/${goodId}/200`;
 };
