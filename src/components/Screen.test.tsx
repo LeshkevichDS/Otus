@@ -20,3 +20,12 @@ describe("Get local transformed links", () => {
     expect(getUrl(1011)).toBe(`https://picsum.photos/id/1000/200`);
   });
 });
+
+describe("Click on button", () => {
+  it("Test click event", () => {
+    const wrapper = mount(<Screen />);
+    expect(wrapper.state.interval).toEqual(1000);
+    wrapper.find('button').simulate('click');
+    expect(wrapper.state.interval).toEqual(2000);
+  });
+});

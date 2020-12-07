@@ -54,8 +54,9 @@ export class Screen extends React.Component<{}, ScreenState> {
             interval: 1000
         };
         this.newImage = this.newImage.bind(this);
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
+        //this.increment = this.increment.bind(this);
+        //this.decrement = this.decrement.bind(this);
+        this.incrementDecrement = this.incrementDecrement.bind(this);
     }
 
     newImage() {
@@ -65,12 +66,16 @@ export class Screen extends React.Component<{}, ScreenState> {
         });
     }
 
-    increment() {
+    /*increment() {
         this.setState(state => ({ interval: state.interval + 1000 }));
     }
     
     decrement() {
         this.setState(state => ({ interval: state.interval - 1000 }));
+    }*/
+
+    incrementDecrement(value: number) { 
+        this.setState(state => ({ interval: state.interval + (value) }));
     }
 
     componentDidMount() {
@@ -101,9 +106,9 @@ export class Screen extends React.Component<{}, ScreenState> {
                 <div>
                     <h1>Lifecycle Screen</h1>
                     <h2>Интервал {this.state.interval}</h2>
-                    <button onClick={this.decrement}>-</button>
+                    <button onClick={this.incrementDecrement(-1000)}>-</button>
                     <img src={this.state.url} />
-                    <button onClick={this.increment}>+</button>
+                    <button onClick={this.incrementDecrement(+1000)}>+</button>
                 </div>
             )
         }
