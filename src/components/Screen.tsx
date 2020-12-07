@@ -46,7 +46,7 @@ interface ScreenState {
 
 export class Screen extends React.Component<{}, ScreenState> {
     intervalId: any;
-    
+    //class-properties
     constructor(props) {
         super(props);
         this.state = {
