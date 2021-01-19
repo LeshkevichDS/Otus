@@ -1,18 +1,31 @@
 import React from "react";
-
-const cellStyle = {
-    width: "35px",
-    height: "35px",
-    border: "1px solid",
-}
+import { dayOfWeekToPrice } from "./Const";
+import { otherCellStyle, selectedOtherCellStyle, firstCellStyle, selectedFirstCellStyle, dayStyle, dayOffStyle, priceStyle, priceOffStyle, priceBookedStyle } from "./Style";
 
 interface CellProps {
-    x: number;
-    y: number;
-}
+    onClick: any,
+    status: any,
+    day: number,
+    dayOfWeek: number,
+};
 
-export const Cell: React.FC<CellProps> = ({x, y}) => {
+export const Cell: React.FC<CellProps> = ({onClick, status, day, dayOfWeek}) => {
+    const cellStyle = () => {
+        if (day === 1 && status === "selected") {return selectedFirstCellStyle(dayOfWeek)} else
+        if (day === 1) {return firstCellStyle(dayOfWeek)} else
+        if (status === "selected") {return selectedOtherCellStyle} else {return otherCellStyle}
+    };
+    const dayStatus = () => {
+        if (status === "" || status === "selected") {return dayStyle} else {return dayOffStyle}
+    };
+    const priceStatus = () => {
+        if (status === "off") {return priceOffStyle} else
+        if (status === "" || status === "selected") {return priceStyle} else {return priceBookedStyle}
+    };
+    const cellStatus = () => {
+        if (status === "" || status === "off") {return(`${dayOfWeekToPrice(dayOfWeek)}р`)} else {return(status)}
+    };
     return (
-        <div onClick={() => console.log(`По ячейке ${`x${x},y${y}`} кликнули`)} style={cellStyle}>{`x${x}y${y}`}</div>
+        <div onClick={onClick} style={cellStyle()}><p style={dayStatus()}>{day}</p><p style={priceStatus()}>{cellStatus()}</p></div>
     )
-}
+};

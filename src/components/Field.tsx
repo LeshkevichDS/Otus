@@ -1,39 +1,43 @@
 import React from "react";
-import { Cell } from "./Cell"
-
-const arrNum = (num: number): number[] => {
-    let arr = [];
-    for (let i = 1; i <= num; i++) {arr.push(i)};
-    return (arr); 
-};
-
-const fieldStyle = (x: number, y: number) => {
-    return {
-        display: "grid",
-        justifyContent: "start",
-        gridTemplateColumns: "auto ".repeat(x),
-        gridTemplateRows: "auto ".repeat(y),
-    }
-}
+import { numToArray, daysInMonth, dateToDayOfWeek, monthToString, dayToDate, todayDate } from "./Const";
+import { fieldStyle, monthFieldStyle, headerFieldStyle, dayOfWeekStyle, weekendStyle } from "./Style";
+import { Cell } from "./Cell";
 
 interface FieldProps {
-    x: number;
-    y: number;
-}
+    updateDate: any,
+    bookedDates: object[],
+    month: number,
+    year: number,
+    startDate: Date,
+    endDate: Date,
+};
 
-export const Field: React.FC<FieldProps> = ({x, y}) => {
-    const Cells = arrNum(y).map(function(itemY) {
+export const Field: React.FC<FieldProps> = ({updateDate, bookedDates, month, year, startDate, endDate}) => {
+    const Cells = numToArray(daysInMonth(month, year)).map(function(day) {
+        let status;
+        if (dayToDate(day, month, year) < todayDate) {status = "off"} else
+        if (dayToDate(day, month, year) === startDate || dayToDate(day, month, year) === endDate) {status = "selected"} else {status = ""}
+        bookedDates.map(function(object) {
+            if (dayToDate(day, month, year) >= object.start && dayToDate(day, month, year) < object.end) {status = object.name}
+        });
+        console.log(status);
         return (
-            arrNum(x).map(function(itemX) {
-                return (
-                    <Cell key={`${itemX}_${itemY}`} x={itemX} y={itemY} />
-                )
-            })
+            <Cell key={day} onClick={() => updateDate(day, month, year)} status={status} day={day} dayOfWeek={dateToDayOfWeek(dayToDate(day, month, year))} />
         )
-    })
+    });
     return (
-        <div style={fieldStyle(x, y)}>
-            {Cells}
-        </div>
-    );
+        <>
+            <h2 style={monthFieldStyle}>{monthToString(month)} {year}</h2>
+            <div style={fieldStyle}>
+                <div style={headerFieldStyle}><p style={dayOfWeekStyle}>ПН</p></div>
+                <div style={headerFieldStyle}><p style={dayOfWeekStyle}>ВТ</p></div>
+                <div style={headerFieldStyle}><p style={dayOfWeekStyle}>СР</p></div>
+                <div style={headerFieldStyle}><p style={dayOfWeekStyle}>ЧТ</p></div>
+                <div style={headerFieldStyle}><p style={dayOfWeekStyle}>ПТ</p></div>
+                <div style={headerFieldStyle}><p style={weekendStyle}>СБ</p></div>
+                <div style={headerFieldStyle}><p style={weekendStyle}>ВС</p></div>
+                {Cells}
+            </div>
+        </>
+    )
 };
