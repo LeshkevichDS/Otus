@@ -20,7 +20,7 @@ export const Field: React.FC<FieldProps> = ({updateDate, bookedDates, month, yea
         bookedDates.map(function(object) {
             if (dayToDate(day, month, year) >= object.start && dayToDate(day, month, year) < object.end) {status = object.name}
         });
-        console.log(status);
+        //console.log(status);
         return (
             <Cell key={day} onClick={() => updateDate(day, month, year)} status={status} day={day} dayOfWeek={dateToDayOfWeek(dayToDate(day, month, year))} />
         )
