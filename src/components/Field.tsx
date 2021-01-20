@@ -14,15 +14,20 @@ interface FieldProps {
 
 export const Field: React.FC<FieldProps> = ({updateDate, bookedDates, month, year, startDate, endDate}) => {
     const Cells = numToArray(daysInMonth(month, year)).map(function(day) {
-        let status;
-        if (dayToDate(day, month, year) < todayDate) {status = "off"} else
-        if (dayToDate(day, month, year) === startDate || dayToDate(day, month, year) === endDate) {status = "selected"} else {status = ""}
+        let dateCell: Date = dayToDate(day, month, year);
+        let status: string = "";
+        let bookedStart: string = "";
+        if (dateCell < todayDate) {status = "off"} else
+        if (dateCell.toString() === startDate.toString()) {status = "start"} else
+        if (dateCell.toString() === endDate.toString()) {status = "end"} else
+        if (dateCell > startDate && dateCell < endDate) {status = "selected"};
         bookedDates.map(function(object) {
-            if (dayToDate(day, month, year) >= object.start && dayToDate(day, month, year) < object.end) {status = object.name}
+            if (dateCell.toString() === object.start.toString()) {status = object.name, bookedStart = "-"};
+            if (dateCell.toString() === endDate.toString() && dateCell.toString() === object.start.toString()) {status = object.name, bookedStart = "+"};
+            if (dateCell >= object.start && dateCell < object.end) {status = object.name};
         });
-        //console.log(status);
         return (
-            <Cell key={day} onClick={() => updateDate(day, month, year)} status={status} day={day} dayOfWeek={dateToDayOfWeek(dayToDate(day, month, year))} />
+            <Cell key={day} onClick={() => updateDate(day, month, year)} status={status} bookedStart={bookedStart} day={day} dayOfWeek={dateToDayOfWeek(dateCell)} />
         )
     });
     return (

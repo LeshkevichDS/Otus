@@ -94,14 +94,15 @@ export const dayOfWeekToPrice = (day: number): number => {
     return (price)
 };
 
-/*export const fullDate = (date): string => {
+export const fullDate = (date): string => {
+    if (date === "") {return(date)} else {
     let oMonth:string;
     if (date.getMonth()+1 < 10) {oMonth = `0${date.getMonth()+1}`} else {oMonth = `${date.getMonth()+1}`};
     let oDay:string;
     if (date.getDate() < 10) {oDay = `0${date.getDate()}`} else {oDay = `${date.getDate()}`};
-    let fullDate: string = `${date.getFullYear()}-${oMonth}-${oDay}`;
-    return (fullDate)
-};*/
+    let fullDate: string = `${oDay}.${oMonth}.${date.getFullYear()}`;
+    return (fullDate)}
+};
 
 export const getDates = (startDate: Date, endDate: Date): Date[] => {
     Date.prototype.addDays = function(days: number): Date {

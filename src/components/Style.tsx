@@ -2,7 +2,40 @@ export const firstCellStyle = (dayOfWeek: number) => {
     return {
         width: "75px",
         height: "75px",
-        color: "#0C131D",
+        cursor: "pointer",
+        gridColumn: dayOfWeek,
+    } 
+};
+
+export const offFirstCellStyle = (dayOfWeek: number) => {
+    return {
+        width: "75px",
+        height: "75px",
+        gridColumn: dayOfWeek,
+    } 
+};
+
+export const startFirstCellStyle = (dayOfWeek: number) => {
+    return {
+        width: "75px",
+        height: "75px",
+        border: "3px solid #0C73FE",
+        borderRadius: "40px",
+        cursor: "pointer",
+        boxSizing: "border-box",
+        background: "#EAF5FF",
+        gridColumn: dayOfWeek,
+    } 
+};
+
+export const endFirstCellStyle = (dayOfWeek: number) => {
+    return {
+        width: "75px",
+        height: "75px",
+        border: "3px solid #0C73FE",
+        borderRadius: "40px",
+        cursor: "pointer",
+        boxSizing: "border-box",
         gridColumn: dayOfWeek,
     } 
 };
@@ -11,25 +44,67 @@ export const selectedFirstCellStyle = (dayOfWeek: number) => {
     return {
         width: "75px",
         height: "75px",
-        color: "#0C131D",
+        borderRadius: "40px",
+        cursor: "pointer",
+        boxSizing: "border-box",
+        background: "#EAF5FF",
         gridColumn: dayOfWeek,
-        border: "1px solid #0C73FE",
-        borderRadius: "50px",
     } 
 };
 
 export const otherCellStyle = {
     width: "75px",
     height: "75px",
-    textColor: "#0C131D",
+    cursor: "pointer",
+};
+
+export const offOtherCellStyle = {
+    width: "75px",
+    height: "75px",
+};
+
+export const startOtherCellStyle = {
+    width: "75px",
+    height: "75px",
+    border: "3px solid #0C73FE",
+    borderRadius: "40px",
+    cursor: "pointer",
+    boxSizing: "border-box",
+    background: "#EAF5FF",
+};
+
+export const endOtherCellStyle = {
+    width: "75px",
+    height: "75px",
+    border: "3px solid #0C73FE",
+    borderRadius: "40px",
+    cursor: "pointer",
+    boxSizing: "border-box",
 };
 
 export const selectedOtherCellStyle = {
     width: "75px",
     height: "75px",
-    textColor: "#0C131D",
-    border: "1px solid #0C73FE",
-    borderRadius: "50px",
+    borderRadius: "40px",
+    cursor: "pointer",
+    boxSizing: "border-box",
+    background: "#EAF5FF",
+};
+
+export const cellStyle = (status: string, bookedStart: string, day: number, dayOfWeek: number) => {
+    if (day === 1 && status === "") {return firstCellStyle(dayOfWeek)} else
+    if (day === 1 && status === "start") {return startFirstCellStyle(dayOfWeek)} else
+    if (day === 1 && status === "end") {return endFirstCellStyle(dayOfWeek)} else
+    if (day === 1 && bookedStart === "-") {return firstCellStyle(dayOfWeek)} else
+    if (day === 1 && bookedStart === "+") {return endFirstCellStyle(dayOfWeek)} else
+    if (day === 1 && status === "selected") {return selectedFirstCellStyle(dayOfWeek)} else
+    if (day === 1) {return offFirstCellStyle(dayOfWeek)} else
+    if (status === "") {return otherCellStyle} else
+    if (status === "start") {return startOtherCellStyle} else
+    if (status === "end") {return endOtherCellStyle} else 
+    if (bookedStart === "-") {return otherCellStyle} else 
+    if (bookedStart === "+") {return endOtherCellStyle} else 
+    if (status === "selected") {return selectedOtherCellStyle} else {return offOtherCellStyle}
 };
 
 export const twoFieldStyle = {
@@ -38,6 +113,7 @@ export const twoFieldStyle = {
     gridTemplateColumns: "auto ".repeat(2),
     gridTemplateRows: "auto ".repeat(2),
     gridAutoFlow: "column",
+    cursor: "default",
 };
 
 export const fieldStyle = {
@@ -60,8 +136,8 @@ export const headerFieldStyle = {
 };
 
 export const bodyStyle = {
-    fontFamily: `"Gill Sans", sans-serif`,
-    fontWeight: "normal",
+    fontFamily: `"Montserrat", "Arial", sans-serif`,
+    fontWeight: "400px",
     fontSize: "18px",
     lineHeight: "18px",
     minWidth: "1300px",
@@ -75,7 +151,7 @@ export const containerStyle = {
     margin: "40px auto 0px",
 };
 
-export const dayStyle = {
+export const dayOnStyle = {
     margin: "0px",
     marginTop: "15px",
     textAlign: "center",
@@ -90,7 +166,11 @@ export const dayOffStyle = {
     color: "#9ea9b7",
 };
 
-export const priceStyle = {
+export const dayStyle = (status: string) => {
+    if (status === "" || status === "selected" || status === "start" || status === "end") {return dayOnStyle} else {return dayOffStyle}
+};
+
+export const priceOnStyle = {
     margin: "0px",
     marginTop: "10px",
     textAlign: "center",
@@ -111,8 +191,13 @@ export const priceBookedStyle = {
     margin: "0px",
     marginTop: "10px",
     textAlign: "center",
-    fontSize: "16px",
+    fontSize: "14px",
     color: "#0C73FE",
+};
+
+export const priceStyle = (status: string) => {
+    if (status === "" || status === "selected" || status === "start" || status === "end") {return priceOnStyle} else
+    if (status === "off") {return priceOffStyle} else {return priceBookedStyle}
 };
 
 export const dayOfWeekStyle = {
@@ -142,9 +227,10 @@ export const leftArrowStyle = {
     fontSize: "50px",
     lineHeight: "60px",
     border: "3px solid #0C73FE",
-    borderRadius: "50px",
+    borderRadius: "40px",
     textAlign: "center",
     padding: "0px",
+    cursor: "pointer",
 };
 
 export const rightArrowStyle = {
@@ -158,11 +244,10 @@ export const rightArrowStyle = {
     fontSize: "50px",
     lineHeight: "60px",
     border: "3px solid #0C73FE",
-    borderRadius: "50px",
+    borderRadius: "40px",
     textAlign: "center",
     padding: "0px",
+    cursor: "pointer",
 };
 
-export const formStyle = {
-
-};
+export const formStyle = {};

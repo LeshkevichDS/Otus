@@ -1,5 +1,5 @@
 import React from "react";
-import { nextDate, todayMonth, todayYear, prevMonth, nextMonth, prevYear, nextYear, dayToDate, calcPrice, getDates, todayDate } from "./Const";
+import { nextDate, todayMonth, todayYear, prevMonth, nextMonth, prevYear, nextYear, dayToDate, calcPrice, getDates, todayDate, fullDate } from "./Const";
 import { twoFieldStyle, bodyStyle, containerStyle, leftArrowStyle, rightArrowStyle, formStyle } from "./Style";
 import { Field } from "./Field";
 import { Form } from "./Form";
@@ -17,7 +17,7 @@ export class StateApp extends React.Component<{}, StateAppState> {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: "Выберите дату",
+            startDate: "",
             endDate: "",
             month: todayMonth,
             year: todayYear,
@@ -37,18 +37,23 @@ export class StateApp extends React.Component<{}, StateAppState> {
     };
 
     updateDate (day: number, month: number, year: number) {
-        let date1: Date;
-        let date2: Date;
-        if (dayToDate(day, month, year) < todayDate) {date1 = this.state.startDate, date2 = this.state.endDate} else
-        if (this.state.startDate === "Выберите дату") {date1 = dayToDate(day, month, year), date2 = nextDate(day, month, year)} else
-        if (dayToDate(day, month, year) < this.state.startDate) {date1 = dayToDate(day, month, year), date2 = this.state.endDate} else
-        if (dayToDate(day, month, year) === this.state.startDate) {date1 = dayToDate(day, month, year), date2 = this.state.endDate}
-        else {date1 = this.state.startDate, date2 = dayToDate(day, month, year)};
+        let click: Date = dayToDate(day, month, year);
+        let date1;
+        let date2;
+        if (click < todayDate) {date1 = this.state.startDate, date2 = this.state.endDate} else
+        if (this.state.bookedDates.some(e => this.state.startDate === "" && click >= e.start && click < e.end)) {date1 = this.state.startDate, date2 = this.state.endDate} else
+        if (this.state.startDate === "") {date1 = click, date2 = nextDate(day, month, year)} else
+        if (this.state.bookedDates.some(e => this.state.startDate < e.start && click > e.start)) {date1 = this.state.startDate, date2 = this.state.endDate} else
+        if (this.state.bookedDates.some(e => click < this.state.startDate && this.state.startDate.toString() === e.end.toString())) {date1 = this.state.startDate, date2 = this.state.endDate} else
+        if (this.state.bookedDates.some(e => click < this.state.startDate && this.state.startDate > e.end && click < e.end)) {date1 = this.state.startDate, date2 = this.state.endDate} else
+        if (click < this.state.startDate) {date1 = click, date2 = this.state.endDate} else
+        if (click.toString() === this.state.startDate.toString()) {date1 = click, date2 = this.state.endDate}
+        else {date1 = this.state.startDate, date2 = click};
         return(this.setState ({ startDate: date1, endDate: date2, price: calcPrice(getDates(date1, date2), date2)}))
     };
 
     clearDate () {
-        this.setState({startDate: "Выберите дату", endDate: "", price: 0})
+        this.setState({startDate: "", endDate: "", price: 0})
     };
 
     incrementMonth() {
@@ -71,7 +76,7 @@ export class StateApp extends React.Component<{}, StateAppState> {
                     <div style={rightArrowStyle} onClick={this.incrementMonth}>{`>`}</div>
                     <button onClick={this.clearDate}>Очистить даты</button>
                     <div style={formStyle}>
-                        <Form updateStatus={this.updateStatus} startDate={this.state.startDate.toString()} endDate={this.state.endDate.toString()} price={this.state.price} />
+                        <Form updateStatus={this.updateStatus} startDate={fullDate(this.state.startDate)} endDate={fullDate(this.state.endDate)} price={this.state.price} />
                     </div>
                 </div>
             </div>

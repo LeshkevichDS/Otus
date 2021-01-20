@@ -2,8 +2,8 @@ import React from "react";
 
 interface FormProps {
     updateStatus: any,
-    startDate: Date,
-    endDate: Date,
+    startDate: string,
+    endDate: string,
     price: number,
 };
 
