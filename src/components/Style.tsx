@@ -255,7 +255,7 @@ export const formStyle = {
 export const clear = {
     boxSizing: "border-box",
     right: "0px",
-    top: "81px",
+    top: "33px",
     position: "absolute",
     height: "40px",
     width: "40px",
@@ -265,12 +265,6 @@ export const clear = {
     borderRadius: "10px",
     textAlign: "center",
     cursor: "pointer",
-};
-
-export const titleFormStyle = {
-    margin: "0px",
-    marginTop: "20px",
-    marginBottom: "10px",
 };
 
 export const lableFormStyle = {

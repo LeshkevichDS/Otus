@@ -1,5 +1,5 @@
 import React from "react";
-import { titleFormStyle, lableFormStyle, secondLableFormStyle, dateFormStyle, secondDateFormStyle, thirdDateFormStyle, fourthDateFormStyle, clear } from "./Style";
+import { lableFormStyle, secondLableFormStyle, dateFormStyle, secondDateFormStyle, thirdDateFormStyle, fourthDateFormStyle, clear } from "./Style";
 
 interface FormProps {
     updateStatus: any,
@@ -16,7 +16,6 @@ export const Form: React.FC<FormProps> = ({updateStatus, clearDate, startDate, e
     };
     return (
         <form method="get" action="form.php">
-            <h3 style={titleFormStyle}>Форма бронирование дат</h3>
             <p style={lableFormStyle}>Заселение:</p>
             <p style={secondLableFormStyle}>Выселение:</p>
             <p style={dateFormStyle}>{startDate}</p>
