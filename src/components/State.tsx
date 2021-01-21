@@ -74,9 +74,8 @@ export class StateApp extends React.Component<{}, StateAppState> {
                     </div>
                     <div style={leftArrowStyle} onClick={this.decrementMonth}>{`<`}</div>
                     <div style={rightArrowStyle} onClick={this.incrementMonth}>{`>`}</div>
-                    <button onClick={this.clearDate}>Очистить даты</button>
                     <div style={formStyle}>
-                        <Form updateStatus={this.updateStatus} startDate={fullDate(this.state.startDate)} endDate={fullDate(this.state.endDate)} price={this.state.price} />
+                        <Form updateStatus={this.updateStatus} clearDate={this.clearDate} startDate={fullDate(this.state.startDate)} endDate={fullDate(this.state.endDate)} price={this.state.price} />
                     </div>
                 </div>
             </div>

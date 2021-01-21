@@ -17,12 +17,11 @@ export const offFirstCellStyle = (dayOfWeek: number) => {
 
 export const startFirstCellStyle = (dayOfWeek: number) => {
     return {
-        width: "75px",
-        height: "75px",
-        border: "3px solid #0C73FE",
+        width: "71px",
+        height: "71px",
+        border: "2px solid #0C73FE",
         borderRadius: "40px",
         cursor: "pointer",
-        boxSizing: "border-box",
         background: "#EAF5FF",
         gridColumn: dayOfWeek,
     } 
@@ -30,12 +29,11 @@ export const startFirstCellStyle = (dayOfWeek: number) => {
 
 export const endFirstCellStyle = (dayOfWeek: number) => {
     return {
-        width: "75px",
-        height: "75px",
+        width: "71px",
+        height: "71px",
         border: "2px solid #0C73FE",
         borderRadius: "40px",
         cursor: "pointer",
-        boxSizing: "border-box",
         gridColumn: dayOfWeek,
     } 
 };
@@ -46,7 +44,6 @@ export const selectedFirstCellStyle = (dayOfWeek: number) => {
         height: "75px",
         borderRadius: "40px",
         cursor: "pointer",
-        boxSizing: "border-box",
         background: "#EAF5FF",
         gridColumn: dayOfWeek,
     } 
@@ -64,22 +61,20 @@ export const offOtherCellStyle = {
 };
 
 export const startOtherCellStyle = {
-    width: "75px",
-    height: "75px",
+    width: "71px",
+    height: "71px",
     border: "2px solid #0C73FE",
     borderRadius: "40px",
     cursor: "pointer",
-    boxSizing: "border-box",
     background: "#EAF5FF",
 };
 
 export const endOtherCellStyle = {
-    width: "75px",
-    height: "75px",
+    width: "71px",
+    height: "71px",
     border: "2px solid #0C73FE",
     borderRadius: "40px",
     cursor: "pointer",
-    boxSizing: "border-box",
 };
 
 export const selectedOtherCellStyle = {
@@ -87,7 +82,6 @@ export const selectedOtherCellStyle = {
     height: "75px",
     borderRadius: "40px",
     cursor: "pointer",
-    boxSizing: "border-box",
     background: "#EAF5FF",
 };
 
@@ -110,8 +104,8 @@ export const cellStyle = (status: string, bookedStart: string, day: number, dayO
 export const twoFieldStyle = {
     display: "grid",
     justifyContent: "center",
-    gridTemplateColumns: "auto ".repeat(2),
-    gridTemplateRows: "auto ".repeat(2),
+    gridTemplateColumns: "auto auto",
+    gridTemplateRows: "auto auto",
     gridAutoFlow: "column",
     cursor: "default",
 };
@@ -126,6 +120,7 @@ export const fieldStyle = {
 };
 
 export const monthFieldStyle = {
+    height: "18px",
     color: "#0C73FE",
     textAlign: "center",
 };
@@ -239,7 +234,6 @@ export const rightArrowStyle = {
     position: "absolute",
     height: "60px",
     width: "60px",
-    background: "white",
     color: "#0C73FE",
     fontSize: "50px",
     lineHeight: "60px",
@@ -250,4 +244,106 @@ export const rightArrowStyle = {
     cursor: "pointer",
 };
 
-export const formStyle = {};
+export const formStyle = {
+    position: "relative",
+    width: "400px",
+    borderTop: "2px solid #9ea9b7",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
+
+export const clear = {
+    boxSizing: "border-box",
+    right: "0px",
+    top: "81px",
+    position: "absolute",
+    height: "40px",
+    width: "40px",
+    padding: "0px",
+    paddingTop: "10px",
+    border: "1px solid #0C73FE",
+    borderRadius: "10px",
+    textAlign: "center",
+    cursor: "pointer",
+};
+
+export const titleFormStyle = {
+    margin: "0px",
+    marginTop: "20px",
+    marginBottom: "10px",
+};
+
+export const lableFormStyle = {
+    display: "inline-block",
+    width: "190px",
+    margin: "0px",
+    marginTop: "10px",
+    marginRight: "20px",
+};
+
+export const secondLableFormStyle = {
+    display: "inline-block",
+    width: "190px",
+    margin: "0px",
+    marginTop: "10px",
+};
+
+export const dateFormStyle = {
+    display: "inline-block",
+    boxSizing: "border-box",
+    width: "190px",
+    height: "40px",
+    margin: "0px",
+    marginTop: "5px",
+    marginRight: "20px",
+    paddingTop: "10px",
+    paddingLeft: "10px",
+    border: "1px solid #0C73FE",
+    borderRadius: "10px",
+};
+
+export const secondDateFormStyle = {
+    display: "inline-block",
+    boxSizing: "border-box",
+    width: "140px",
+    height: "40px",
+    margin: "0px",
+    marginTop: "5px",
+    paddingTop: "10px",
+    paddingLeft: "10px",
+    border: "1px solid #0C73FE",
+    borderRadius: "10px",
+};
+
+export const thirdDateFormStyle = {
+    display: "inline-block",
+    boxSizing: "border-box",
+    width: "190px",
+    height: "40px",
+    margin: "0px",
+    marginTop: "5px",
+    marginRight: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #0C73FE",
+    borderRadius: "10px",
+    fontFamily: `"Montserrat", "Arial", sans-serif`,
+    fontWeight: "400px",
+    fontSize: "18px",
+    lineHeight: "18px",
+};
+
+export const fourthDateFormStyle = {
+    display: "inline-block",
+    boxSizing: "border-box",
+    width: "190px",
+    height: "40px",
+    margin: "0px",
+    marginTop: "5px",
+    paddingLeft: "10px",
+    border: "1px solid #0C73FE",
+    borderRadius: "10px",
+    fontFamily: `"Montserrat", "Arial", sans-serif`,
+    fontWeight: "400px",
+    fontSize: "18px",
+    lineHeight: "18px",
+};

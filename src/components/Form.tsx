@@ -1,38 +1,31 @@
 import React from "react";
+import { titleFormStyle, lableFormStyle, secondLableFormStyle, dateFormStyle, secondDateFormStyle, thirdDateFormStyle, fourthDateFormStyle, clear } from "./Style";
 
 interface FormProps {
     updateStatus: any,
+    clearDate: any,
     startDate: string,
     endDate: string,
     price: number,
 };
 
-export const Form: React.FC<FormProps> = ({updateStatus, startDate, endDate, price}) => {
-    let name;
+export const Form: React.FC<FormProps> = ({updateStatus, clearDate, startDate, endDate, price}) => {
+    let name: string;
     const handleChange = (event) => {
-        name = event.target.value;
+        if (event.target.value != undefined) {name = event.target.value}
     };
     return (
         <form method="get" action="form.php">
-            <p>Заселение: {startDate}</p>
-            <p>Выселение: {endDate}</p>
-            <br/>
-            <label>
-                Имя:
-                <input type="text" name="name" onChange={handleChange} required />
-            </label><br/>
-            <label>
-                Email:
-                <input type="email" name="email" required />
-            </label><br/>
-            <label>
-                Время заселения:
-                <select name="time">
-                    <option value="10:00">10:00</option> 
-                    <option value="12:00">12:00</option> 
-                    <option value="14:00">14:00</option> 
-                </select>
-            </label>
+            <h3 style={titleFormStyle}>Форма бронирование дат</h3>
+            <p style={lableFormStyle}>Заселение:</p>
+            <p style={secondLableFormStyle}>Выселение:</p>
+            <p style={dateFormStyle}>{startDate}</p>
+            <p style={secondDateFormStyle}>{endDate}</p>
+            <div style={clear} onClick={clearDate}>X</div>
+            <label style={lableFormStyle}>Имя:</label>
+            <label style={secondLableFormStyle}>Email:</label>
+            <input style={thirdDateFormStyle} type="text" name="name" onChange={handleChange} required />
+            <input style={fourthDateFormStyle} type="email" name="email" required />
             <p>Сумма к оплате: {price} рублей</p>
             <input type="button" value="Отправить" onClick={() => updateStatus(name)} />
         </form>
