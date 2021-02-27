@@ -4,4 +4,4 @@
 
 # Technology stack
 
-React, TypeScript, JavaScript, HTML, CSS
+Webpack, React, TypeScript, JavaScript, HTML, CSS
